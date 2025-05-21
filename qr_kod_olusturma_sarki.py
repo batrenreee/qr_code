@@ -24,7 +24,7 @@ class QRUygulama(QWidget):
         self.title.setStyleSheet("color: #333; margin: 20px;")
 
         self.entry = QLineEdit()
-        self.entry.setPlaceholderText("Şarkı adını gir (örnek: Tarkan - Kuzu Kuzu)")
+        self.entry.setPlaceholderText("Şarkı adını gir")
         self.entry.setStyleSheet("""
             padding: 10px;
             font-size: 14px;
@@ -79,11 +79,6 @@ class QRUygulama(QWidget):
             video = sonuc['result'][0]
             link = video['link']
             title = video['title'].lower()
-
-            keywords = ["music", "official", "song", "lyrics", "audio", "remix", "feat", "ft."]
-            if not any(k in title for k in keywords):
-                QMessageBox.information(self, "Bilgi", "Bu video bir şarkı olmayabilir.")
-                return
 
             qr = qrcode.make(link)
             qr.save("sarki_qr.png")
